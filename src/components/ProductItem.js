@@ -18,18 +18,18 @@ const ProductItem = product => {
   };
 
   return (
-    <div>
+    <ProductItemWrapper>
       <Img src={coverImage} alt={title} />
-      <h3>{title}</h3>
-      <p>{price}</p>
-      <StyledHeartButton onClick={toggleItem.bind(this, id)}>
+      <Title>{title}</Title>
+      <Price>{price}</Price>
+      <HeartButton onClick={toggleItem.bind(this, id)}>
         {cartList.every(v => v.id !== id) ? (
           <FaRegHeart className="heart-empty-icon" />
         ) : (
           <FaHeart className="heart-icon" />
         )}
-      </StyledHeartButton>
-    </div>
+      </HeartButton>
+    </ProductItemWrapper>
   );
 };
 
@@ -42,14 +42,52 @@ ProductItem.propTypes = {
   })
 };
 
+const ProductItemWrapper = styled.div`
+  position: relative;
+  width: 280px;
+  height: 290px;
+  margin: 2% 3%;
+  overflow: hidden;
+`;
+
 const Img = styled.img`
   display: block;
   width: 100%;
   height: 190px;
   border-radius: 3px;
+  &:hover {
+    transform: scale(1.1);
+    transition: 0.3s;
+  }
 `;
 
-const StyledHeartButton = styled.div`
+const Title = styled.title`
+  display: -webkit-box;
+  margin: 7px 0;
+  height: 40px;
+  line-height: 20px;
+  font-size: 15px;
+  font-weight: normal;
+  letter-spacing: -0.2px;
+  color: rgb(27, 28, 29);
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+`;
+
+const Price = styled.p`
+  position: absolute;
+  left: 10px;
+  bottom: 10px;
+  font-size: 15px;
+  font-weight: 700;
+  color: rgb(27, 28, 29);
+`;
+
+const HeartButton = styled.div`
+  position: absolute;
+  top: 8px;
+  right: 8px;
   transition: 0.3s;
   &:hover {
     cursor: pointer;

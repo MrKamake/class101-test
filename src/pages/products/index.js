@@ -39,13 +39,10 @@ const Products = () => {
 };
 
 const StyledProducts = styled.div`
-  padding: 8% 15% 0 15%;
-  .products-wrapper {
-    display: flex;
-    flex-wrap: wrap;
-    margin: 0 auto;
-    width: 87.5%;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto;
+  width: 88%;
 `;
 
 export default Products;
