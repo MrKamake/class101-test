@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { CartContext } from '../App.js';
+import { CartContext } from '../../App.js';
 import { FaRegHeart, FaHeart } from 'react-icons/fa';
 import styled from 'styled-components';
 
@@ -21,7 +21,7 @@ const ProductItem = product => {
     <ProductItemWrapper>
       <Img src={coverImage} alt={title} />
       <Title>{title}</Title>
-      <Price>{price}</Price>
+      <Price>{price}원</Price>
       <HeartButton onClick={toggleItem.bind(this, id)}>
         {cartList.every(v => v.id !== id) ? (
           <FaRegHeart className="heart-empty-icon" size="21px" />

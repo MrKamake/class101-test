@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { getDataApi } from '../../utils';
-import ProductItem from '../../components/ProductItem';
+import ProductItem from './ProductItem';
 import PageNation from './PageNation';
 import styled from 'styled-components';
 
