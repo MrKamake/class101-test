@@ -24,9 +24,9 @@ const ProductItem = product => {
       <Price>{price}</Price>
       <HeartButton onClick={toggleItem.bind(this, id)}>
         {cartList.every(v => v.id !== id) ? (
-          <FaRegHeart className="heart-empty-icon" />
+          <FaRegHeart className="heart-empty-icon" size="21px" />
         ) : (
-          <FaHeart className="heart-icon" />
+          <FaHeart className="heart-icon" size="21px" />
         )}
       </HeartButton>
     </ProductItemWrapper>

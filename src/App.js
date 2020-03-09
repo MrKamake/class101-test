@@ -1,6 +1,7 @@
 import React, { useState, createContext } from 'react';
 import { Route, Redirect } from 'react-router-dom';
 import styled from 'styled-components';
+import Header from './components/Header';
 import Products from './pages/products';
 import Cart from './pages/cart';
 
@@ -12,6 +13,7 @@ const App = () => {
 
   return (
     <CartContext.Provider value={globalState}>
+      <Header />
       <StyledApp>
         <Route exact path="/" render={() => <Redirect to="/products" />} />
         <Route path="/products" component={Products} />
