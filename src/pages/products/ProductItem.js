@@ -12,10 +12,20 @@ const ProductItem = product => {
     const callback = ({ product }) => product.id !== id;
     cartList.every(callback)
       ? cartList.length < 3
-        ? setCartList([...cartList, product])
-        : alert('장바구니에는 최대 3개까지 담을 수 있어요^^')
+        ? setCartList([
+            ...cartList,
+            {
+              product,
+              selected: true,
+              quantity: 1,
+              coupon: { type: '', discount: 0 }
+            }
+          ])
+        : alert('장바구니에는 3개까지 담을 수 있어요. :)')
       : setCartList(cartList.filter(callback));
   };
+
+  const isHave = cartList.some(({ product }) => product.id === id);
 
   return (
     <ProductItemWrapper>
@@ -23,10 +33,10 @@ const ProductItem = product => {
       <Title>{title}</Title>
       <Price>{price}원</Price>
       <HeartButton onClick={toggleItem.bind(this, id)}>
-        {cartList.every(v => v.id !== id) ? (
-          <FaRegHeart className="heart-empty-icon" size="21px" />
-        ) : (
+        {isHave ? (
           <FaHeart className="heart-icon" size="21px" />
+        ) : (
+          <FaRegHeart className="heart-empty-icon" size="21px" />
         )}
       </HeartButton>
     </ProductItemWrapper>
