@@ -12,7 +12,7 @@ const PageNation = ({ items, trimNumber, onChagePage }) => {
 
   return (
     <PageNationWrapper>
-      <ul className="PageNation">
+      <StyledPageNation>
         {items.length !== 0
           ? new Array(pageNum).fill(null).map((_, i) => {
               const page = i + 1;
@@ -32,7 +32,7 @@ const PageNation = ({ items, trimNumber, onChagePage }) => {
               );
             })
           : null}
-      </ul>
+      </StyledPageNation>
     </PageNationWrapper>
   );
 };
@@ -52,9 +52,10 @@ const PageNationWrapper = styled.div`
   display: block;
   width: 100%;
   text-align: center;
-  ul {
-    margin: 30px 0px;
-  }
+`;
+
+const StyledPageNation = styled.ul`
+  margin: 30px 0px;
   li {
     display: inline-block;
     margin: 0 1%;

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getDataApi } from '../../utils';
 import ProductItem from '../../components/ProductItem';
 import PageNation from './PageNation';
+import styled from 'styled-components';
 
 const Products = () => {
   const [productItems, setProductItems] = useState([]);
@@ -26,15 +27,25 @@ const Products = () => {
   }
 
   return (
-    <div className="Products">
+    <StyledProducts>
       {renderProducts()}
       <PageNation
         items={productItems}
         trimNumber={5}
         onChagePage={handleChangePage}
       />
-    </div>
+    </StyledProducts>
   );
 };
+
+const StyledProducts = styled.div`
+  padding: 8% 15% 0 15%;
+  .products-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    width: 87.5%;
+  }
+`;
 
 export default Products;

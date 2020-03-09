@@ -1,18 +1,28 @@
-import React from 'react';
+import React, { useState, createContext } from 'react';
 import { Route, Redirect } from 'react-router-dom';
+import styled from 'styled-components';
 import Products from './pages/products';
 import Cart from './pages/cart';
 
+export const CartContext = createContext();
+
 const App = () => {
+  const [cartList, setCartList] = useState([]);
+  const globalState = { cartList, setCartList };
+
   return (
-    <>
-      <div className="App">
+    <CartContext.Provider value={globalState}>
+      <StyledApp>
         <Route exact path="/" render={() => <Redirect to="/products" />} />
         <Route path="/products" component={Products} />
         <Route path="/cart" component={Cart} />
-      </div>
-    </>
+      </StyledApp>
+    </CartContext.Provider>
   );
 };
+
+const StyledApp = styled.div`
+  padding: 8% 15% 0 15%;
+`;
 
 export default App;
