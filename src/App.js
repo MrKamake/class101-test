@@ -24,7 +24,7 @@ const App = () => {
 };
 
 const StyledApp = styled.div`
-  padding: 8% 15% 0 15%;
+  padding: 0 15% 0 15%;
 `;
 
 export default App;

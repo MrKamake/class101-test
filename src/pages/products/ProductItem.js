@@ -29,14 +29,16 @@ const ProductItem = product => {
 
   return (
     <ProductItemWrapper>
-      <Img src={coverImage} alt={title} />
+      <ImageWrapper>
+        <Img src={coverImage} alt={title} />
+      </ImageWrapper>
       <Title>{title}</Title>
       <Price>{price}원</Price>
       <HeartButton onClick={toggleItem.bind(this, id)}>
         {isHave ? (
-          <FaHeart className="heart-icon" size="21px" />
+          <FaHeart color="#FC3C46" size="21px" />
         ) : (
-          <FaRegHeart className="heart-empty-icon" size="21px" />
+          <FaRegHeart color="#FFFFFF" size="21px" />
         )}
       </HeartButton>
     </ProductItemWrapper>
@@ -54,10 +56,15 @@ ProductItem.propTypes = {
 
 const ProductItemWrapper = styled.div`
   position: relative;
+  margin: 2% 3%;
   width: 280px;
   height: 290px;
-  margin: 2% 3%;
   overflow: hidden;
+`;
+
+const ImageWrapper = styled.div`
+  overflow: hidden;
+  }
 `;
 
 const Img = styled.img`
@@ -65,6 +72,7 @@ const Img = styled.img`
   width: 100%;
   height: 190px;
   border-radius: 3px;
+  transition: 0.3s;
   &:hover {
     transform: scale(1.1);
     transition: 0.3s;
@@ -103,12 +111,6 @@ const HeartButton = styled.div`
     cursor: pointer;
     transform: scale(1.4);
     transition: 0.3s;
-  }
-  .heart-icon {
-    color: #fa5b4a;
-  }
-  .heart-empty-icon {
-    color: white;
   }
 `;
 
