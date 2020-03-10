@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { CartContext } from '../../App.js';
+import { CartContext } from '../../App';
 import { FaRegHeart, FaHeart } from 'react-icons/fa';
 import styled from 'styled-components';
 

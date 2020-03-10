@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { CartContext } from '../../App';
 import { getDataApi } from '../../utils';
 import CartItem from './CartItem';
+import Price from './Price';
 
 const Cart = () => {
   const [coupons, setCoupons] = useState([]);
@@ -21,6 +22,7 @@ const Cart = () => {
       {cartList.map(item => (
         <CartItem key={item.product.id} item={item} coupons={coupons} />
       ))}
+      {cartList.length !== 0 && <Price />}
     </div>
   );
 };
