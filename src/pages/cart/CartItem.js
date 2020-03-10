@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import { CartContext } from '../../App.js';
+import { CartContext } from '../../App';
 import { FaHeart } from 'react-icons/fa';
 import styled from 'styled-components';
 
 const CartItem = ({ item, coupons }) => {
-  const { cartlist, setCartlist } = useContext(CartContext);
+  const { cartList, setCartList } = useContext(CartContext);
   const {
     product: { id, title, coverImage, price, availableCoupon },
     selected,
@@ -12,44 +12,80 @@ const CartItem = ({ item, coupons }) => {
   } = item;
 
   const toggleSelected = id => {
-    const toggled = cartlist.map(item => {
+    const toggled = cartList.map(item => {
       const { product, selected } = item;
       return product.id === id ? { ...item, selected: !selected } : item;
     });
-    setCartlist(toggled);
+    setCartList(toggled);
   };
 
   const handleChangeCount = (id, { target: { value } }) => {
-    const changed = cartlist.map(item => {
+    const changed = cartList.map(item => {
       const { product } = item;
       return product.id === id ? { ...item, quantity: value } : item;
     });
-    setCartlist(changed);
+    setCartList(changed);
+  };
+
+  const handleChangeCoupon = (id, { target: { value } }) => {
+    const [type, discount] = value.split(',');
+    const changed = cartList.map(item => {
+      const { product } = item;
+      return product.id === id
+        ? { ...item, coupon: { type, discount: +discount } }
+        : item;
+    });
+    setCartList(changed);
+  };
+
+  const renderCouopns = () => {
+    return (
+      <>
+        <option value="none, 0">쿠폰 선택 가능</option>
+        {coupons.map(coupon => (
+          <option
+            value={[coupon.type, coupon.discountRate || coupon.discountAmount]}
+            key={coupon.title}
+          >
+            {coupon.title}
+          </option>
+        ))}
+      </>
+    );
   };
 
   const removeCartlist = id => {
-    setCartlist(cartlist.filter(({ product }) => product.id !== id));
+    setCartList(cartList.filter(({ product }) => product.id !== id));
   };
 
   return (
-    <ProductItemWrapper>
+    <>
       <input
         type="checkbox"
         checked={selected}
         onChange={toggleSelected.bind(this, id)}
       />
-      <Img src={coverImage} alt={title} />
-      <Title>{title}</Title>
-      <HeartButton onClick={removeCartlist.bind(this, id)}>
-        <FaHeart className="heart-icon" size="21px" />
-      </HeartButton>
-      <Price>{price}원</Price>
-      <input
-        type="number"
-        value={quantity}
-        onChange={handleChangeCount.bind(this, id)}
-      />
-    </ProductItemWrapper>
+      <ProductItemWrapper>
+        <Img src={coverImage} alt={title} />
+        <Title>{title}</Title>
+        <HeartButton onClick={removeCartlist.bind(this, id)}>
+          <FaHeart className="heart-icon" size="21px" />
+        </HeartButton>
+        <Price>{price}원</Price>
+        <input
+          type="number"
+          value={quantity}
+          onChange={handleChangeCount.bind(this, id)}
+        />
+        <select onChange={handleChangeCoupon.bind(this, id)}>
+          {availableCoupon === false ? (
+            <option>쿠폰을 사용할 수 없는 제품이에요.</option>
+          ) : (
+            renderCouopns()
+          )}
+        </select>
+      </ProductItemWrapper>
+    </>
   );
 };
 
