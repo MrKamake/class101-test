@@ -46,7 +46,7 @@ const CartItemsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   position: relative;
-  height: ${props => (props.isHave ? '400px' : '600px')};
+  height: ${props => props.isHave || '600px'};
   background-color: ${props => (props.isHave ? '#FFFFFF' : '#f8f8f9')};
   border-radius: 3px;
   a {
