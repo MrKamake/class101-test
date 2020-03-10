@@ -10,10 +10,10 @@ const Header = () => (
     </Link>
     <ul>
       <Link to="/products">
-        <li>Products</li>
+        <li>상품</li>
       </Link>
       <Link to="/cart">
-        <li>Cart</li>
+        <li>장바구니</li>
       </Link>
     </ul>
   </StyledHeader>
