@@ -60,30 +60,34 @@ const CartItem = ({ item, coupons }) => {
 
   return (
     <>
-      <input
-        type="checkbox"
-        checked={selected}
-        onChange={toggleSelected.bind(this, id)}
-      />
       <ProductItemWrapper>
-        <Img src={coverImage} alt={title} />
+        <ImageWrapper>
+          <Img src={coverImage} alt={title} />
+        </ImageWrapper>
+        <StyledCheckbox
+          type="checkbox"
+          checked={selected}
+          onChange={toggleSelected.bind(this, id)}
+        />
         <Title>{title}</Title>
         <HeartButton onClick={removeCartlist.bind(this, id)}>
           <FaHeart className="heart-icon" size="21px" />
         </HeartButton>
+        <SelectWrapper>
+          <input
+            type="number"
+            value={quantity}
+            onChange={handleChangeCount.bind(this, id)}
+          />
+          <select onChange={handleChangeCoupon.bind(this, id)}>
+            {availableCoupon === false ? (
+              <option>쿠폰을 사용할 수 없는 제품이에요.</option>
+            ) : (
+              renderCouopns()
+            )}
+          </select>
+        </SelectWrapper>
         <Price>{price}원</Price>
-        <input
-          type="number"
-          value={quantity}
-          onChange={handleChangeCount.bind(this, id)}
-        />
-        <select onChange={handleChangeCoupon.bind(this, id)}>
-          {availableCoupon === false ? (
-            <option>쿠폰을 사용할 수 없는 제품이에요.</option>
-          ) : (
-            renderCouopns()
-          )}
-        </select>
       </ProductItemWrapper>
     </>
   );
@@ -91,10 +95,22 @@ const CartItem = ({ item, coupons }) => {
 
 const ProductItemWrapper = styled.div`
   position: relative;
+  margin: 2% 3%;
   width: 280px;
   height: 290px;
-  margin: 2% 3%;
   overflow: hidden;
+`;
+
+const ImageWrapper = styled.div`
+  overflow: hidden;
+`;
+
+const StyledCheckbox = styled.input`
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  cursor: pointer;
+  transform: scale(1.3);
 `;
 
 const Img = styled.img`
@@ -110,8 +126,8 @@ const Img = styled.img`
 
 const Title = styled.title`
   display: -webkit-box;
-  margin: 7px 0;
   height: 40px;
+  padding: 6px 0;
   line-height: 20px;
   font-size: 15px;
   font-weight: normal;
@@ -120,15 +136,6 @@ const Title = styled.title`
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
-`;
-
-const Price = styled.p`
-  position: absolute;
-  left: 10px;
-  bottom: 10px;
-  font-size: 15px;
-  font-weight: 700;
-  color: rgb(27, 28, 29);
 `;
 
 const HeartButton = styled.div`
@@ -147,6 +154,17 @@ const HeartButton = styled.div`
   .heart-empty-icon {
     color: white;
   }
+`;
+
+const SelectWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const Price = styled.p`
+  font-size: 15px;
+  font-weight: 700;
+  color: rgb(27, 28, 29);
 `;
 
 export default CartItem;

@@ -64,7 +64,6 @@ const ProductItemWrapper = styled.div`
 
 const ImageWrapper = styled.div`
   overflow: hidden;
-  }
 `;
 
 const Img = styled.img`
