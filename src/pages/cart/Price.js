@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import { CartContext } from '../../App';
 import styled from 'styled-components';
+import CountUp from 'react-countup';
 
 const Price = () => {
   const { cartList } = useContext(CartContext);
@@ -38,17 +39,25 @@ const Price = () => {
           <TableBody>
             <tr>
               <th>총 상품 금액</th>
-              <td>{getTotalPrice()} 원</td>
+              <td>{getTotalPrice().toLocaleString()} 원</td>
             </tr>
             <tr className="discount-text">
               <th>상품 할인 금액</th>
-              <td>- {getDiscountPrice()}원</td>
+              <td>- {getDiscountPrice().toLocaleString()}원</td>
             </tr>
           </TableBody>
           <TableFoot>
             <tr>
               <th>최종 가격</th>
-              <td>{getTotalPrice() - getDiscountPrice()}원</td>
+              <td>
+                <CountUp
+                  start={0}
+                  end={getTotalPrice() - getDiscountPrice()}
+                  duration={1}
+                  separator=","
+                  suffix="원"
+                />
+              </td>
             </tr>
           </TableFoot>
         </Table>
