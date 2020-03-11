@@ -10,6 +10,13 @@ const PageNation = ({ items, trimNumber, onChagePage }) => {
     onChagePage(items.slice(0, trimNumber));
   }, []);
 
+  const setScrollTop = () => {
+    const { documentElement, body } = document;
+    if (documentElement) documentElement.scrollTop = 0;
+    // Safari
+    body.scrollTop = 0;
+  };
+
   return (
     <PageNationWrapper>
       <StyledPageNation>
@@ -24,6 +31,7 @@ const PageNation = ({ items, trimNumber, onChagePage }) => {
                       items.slice(trimNumber * i, trimNumber * i + 5)
                     );
                     setCurrentPage(page);
+                    setScrollTop();
                   }}
                   key={i}
                 >
