@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { getDataApi } from '../../utils';
 import ProductItem from './ProductItem';
 import PageNation from './PageNation';
+import Loading from '../../components/Loading';
 import styled from 'styled-components';
 
 const Products = () => {
@@ -22,9 +23,7 @@ const Products = () => {
   const renderProducts = () =>
     pageItems.map(product => <ProductItem key={product.id} {...product} />);
 
-  if (productItems.length === 0) {
-    return <h1>Loading...</h1>;
-  }
+  if (productItems.length === 0) return <Loading />;
 
   return (
     <StyledProducts>

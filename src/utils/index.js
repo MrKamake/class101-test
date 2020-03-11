@@ -7,7 +7,7 @@ const getDataApi = dataName =>
   new Promise((resolve, reject) => {
     setTimeout(() => {
       resolve(data[dataName]);
-    }, 100);
+    }, 1500);
   });
 
 export { getDataApi };
