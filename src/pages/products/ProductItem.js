@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { CartContext } from '../../App';
+import Button from '../../components/Button';
 import { FaRegHeart, FaHeart } from 'react-icons/fa';
 import styled from 'styled-components';
 
@@ -34,13 +35,13 @@ const ProductItem = product => {
       </ImageWrapper>
       <Title>{title}</Title>
       <Price>{price}원</Price>
-      <HeartButton onClick={toggleItem.bind(this, id)}>
+      <Button onClick={toggleItem.bind(this, id)} style={StyledHeartButton}>
         {isHave ? (
           <FaHeart color="#FC3C46" size="21px" />
         ) : (
           <FaRegHeart color="#FFFFFF" size="21px" />
         )}
-      </HeartButton>
+      </Button>
     </ProductItemWrapper>
   );
 };
@@ -52,6 +53,12 @@ ProductItem.propTypes = {
     coverImage: PropTypes.string,
     price: PropTypes.number
   })
+};
+
+const StyledHeartButton = {
+  position: 'absolute',
+  top: '8px',
+  right: '8px'
 };
 
 const ProductItemWrapper = styled.div`
@@ -99,18 +106,6 @@ const Price = styled.p`
   font-size: 15px;
   font-weight: 700;
   color: rgb(27, 28, 29);
-`;
-
-const HeartButton = styled.div`
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  transition: 0.3s;
-  &:hover {
-    cursor: pointer;
-    transform: scale(1.4);
-    transition: 0.3s;
-  }
 `;
 
 export default ProductItem;
