@@ -17,23 +17,25 @@ const PageNation = ({ items, trimNumber, onChagePage }) => {
     body.scrollTop = 0;
   };
 
+  const handleClickPage = (page, index) => {
+    onChagePage(items.slice(trimNumber * index, trimNumber * index + 5));
+    setCurrentPage(page);
+    setScrollTop();
+  };
+
   return (
     <PageNationWrapper>
       <StyledPageNation>
         {items.length !== 0
-          ? new Array(pageNum).fill(null).map((_, i) => {
-              const page = i + 1;
+          ? new Array(pageNum).fill(null).map((_, index) => {
+              const page = index + 1;
               return (
                 <li
-                  className={currentPage === page ? 'active' : 'disabled'}
-                  onClick={() => {
-                    onChagePage(
-                      items.slice(trimNumber * i, trimNumber * i + 5)
-                    );
-                    setCurrentPage(page);
-                    setScrollTop();
-                  }}
-                  key={i}
+                  className={currentPage === page && 'active'}
+                  onClick={() =>
+                    currentPage === page || handleClickPage(page, index)
+                  }
+                  key={index}
                 >
                   {page}
                 </li>
@@ -77,6 +79,7 @@ const StyledPageNation = styled.ul`
     border-bottom: 3px solid black;
     color: rgb(27, 28, 29);
     font-weight: 800;
+    cursor: default;
   }
 `;
 
