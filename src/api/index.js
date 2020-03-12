@@ -1,5 +1,5 @@
-import coupons from './../mock-data/coupons';
 import productItems from './../mock-data/productItems';
+import coupons from './../mock-data/coupons';
 
 const data = { coupons, productItems };
 

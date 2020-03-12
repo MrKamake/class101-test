@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import Logo from '../images/logo.png';
 import styled from 'styled-components';
+import Logo from '../images/logo.png';
 
 const Header = () => (
   <StyledHeader>
@@ -28,7 +28,7 @@ const StyledHeader = styled.div`
   justify-content: space-between;
   position: relative;
   width: 100%;
-  padding: 1% 0px;
+  padding: 9px 0;
   a {
     text-decoration: none;
     color: black;
@@ -36,9 +36,11 @@ const StyledHeader = styled.div`
   }
   ul {
     display: flex;
+    padding-left: 0;
     li {
       margin: 0 10px;
       list-style-type: none;
+      font-size: 14px;
     }
   }
 `;
@@ -46,7 +48,9 @@ const StyledHeader = styled.div`
 const Img = styled.img`
   display: flex;
   cursor: pointer;
-  width: 113px;
+  width: 109px;
+  height: 30px;
+  padding: 1px 2px;
 `;
 
 export default Header;

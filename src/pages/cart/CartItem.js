@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import { CartContext } from '../../App';
-import { FaHeart } from 'react-icons/fa';
 import styled from 'styled-components';
+import Button from '../../components/Button';
+import { FaHeart } from 'react-icons/fa';
 
 const CartItem = ({ item, coupons }) => {
   const { cartList, setCartList } = useContext(CartContext);
@@ -70,9 +71,14 @@ const CartItem = ({ item, coupons }) => {
           onChange={toggleSelected.bind(this, id)}
         />
         <Title>{title}</Title>
-        <HeartButton onClick={removeCartlist.bind(this, id)}>
-          <FaHeart className="heart-icon" size="21px" />
-        </HeartButton>
+        <StyledHoverButton>
+          <Button
+            onClick={removeCartlist.bind(this, id)}
+            style={StyledHeartButton}
+          >
+            <FaHeart color="#FC3C46" size="21px" />
+          </Button>
+        </StyledHoverButton>
         <SelectWrapper>
           <input
             type="number"
@@ -138,24 +144,6 @@ const Title = styled.title`
   overflow: hidden;
 `;
 
-const HeartButton = styled.div`
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  transition: 0.3s;
-  &:hover {
-    cursor: pointer;
-    transform: scale(1.4);
-    transition: 0.3s;
-  }
-  .heart-icon {
-    color: #fa5b4a;
-  }
-  .heart-empty-icon {
-    color: white;
-  }
-`;
-
 const SelectWrapper = styled.div`
   display: flex;
   justify-content: space-between;
@@ -166,5 +154,29 @@ const Price = styled.p`
   font-weight: 700;
   color: rgb(27, 28, 29);
 `;
+
+
+const StyledHeartButton = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  padding: '0',
+  width: '21px',
+  height: '21px'
+};
+
+const StyledHoverButton = styled.div`
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  &:hover {
+    background-color: #ffffff50;
+  }
+`;
+
 
 export default CartItem;

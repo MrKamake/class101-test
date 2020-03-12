@@ -1,6 +1,6 @@
 import React from 'react';
-import { Wave } from 'better-react-spinkit';
 import styled from 'styled-components';
+import { Wave } from 'better-react-spinkit';
 
 const Loading = () => {
   return (

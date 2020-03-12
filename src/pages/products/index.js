@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { getDataApi } from '../../api';
+import styled from 'styled-components';
+import Loading from '../../components/Loading';
 import ProductItem from './ProductItem';
 import PageNation from './PageNation';
-import Loading from '../../components/Loading';
-import styled from 'styled-components';
 
 const Products = () => {
   const [productItems, setProductItems] = useState([]);

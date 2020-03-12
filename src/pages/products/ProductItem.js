@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { CartContext } from '../../App';
+import styled from 'styled-components';
 import Button from '../../components/Button';
 import { FaRegHeart, FaHeart } from 'react-icons/fa';
-import styled from 'styled-components';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 
@@ -59,28 +59,6 @@ ProductItem.propTypes = {
   })
 };
 
-const StyledHeartButton = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  padding: '0',
-  width: '21px',
-  height: '21px'
-};
-
-const StyledHoverButton = styled.div`
-  position: absolute;
-  top: 2%;
-  right: 2%;
-  width: 30px;
-  height: 30px;
-  border-radius: 100%;
-  &:hover {
-    background-color: #ffffff50;
-  }
-`;
-
 const ProductItemWrapper = styled.div`
   position: relative;
   margin: 2% 3%;
@@ -126,6 +104,28 @@ const Price = styled.p`
   font-size: 15px;
   font-weight: 700;
   color: rgb(27, 28, 29);
+`;
+
+const StyledHeartButton = {
+  position: 'absolute',
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  padding: '0',
+  width: '21px',
+  height: '21px'
+};
+
+const StyledHoverButton = styled.div`
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  &:hover {
+    background-color: #ffffff50;
+  }
 `;
 
 export default ProductItem;
