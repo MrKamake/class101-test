@@ -4,6 +4,8 @@ import { CartContext } from '../../App';
 import Button from '../../components/Button';
 import { FaRegHeart, FaHeart } from 'react-icons/fa';
 import styled from 'styled-components';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const ProductItem = product => {
   const { id, title, coverImage, price } = product;
@@ -31,7 +33,7 @@ const ProductItem = product => {
   return (
     <ProductItemWrapper>
       <ImageWrapper>
-        <Img src={coverImage} alt={title} />
+        <LazyLoadImage src={coverImage} effect="blur" alt={title} />
       </ImageWrapper>
       <Title>{title}</Title>
       <Price>{price}원</Price>
@@ -89,17 +91,16 @@ const ProductItemWrapper = styled.div`
 
 const ImageWrapper = styled.div`
   overflow: hidden;
-`;
-
-const Img = styled.img`
-  display: block;
-  width: 100%;
-  height: 190px;
-  border-radius: 3px;
-  transition: 0.3s;
-  &:hover {
-    transform: scale(1.1);
+  img {
+    display: block;
+    width: 100%;
+    height: 190px;
+    border-radius: 3px;
     transition: 0.3s;
+    &:hover {
+      transform: scale(1.1);
+      transition: 0.3s;
+    }
   }
 `;
 
