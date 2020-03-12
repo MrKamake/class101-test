@@ -42,7 +42,7 @@ const StyledProducts = styled.div`
   flex-wrap: wrap;
   margin: 0 auto;
   padding-top: 5%;
-  width: 88%;
+  width: 62%;
 `;
 
 export default Products;

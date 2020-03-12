@@ -35,13 +35,15 @@ const ProductItem = product => {
       </ImageWrapper>
       <Title>{title}</Title>
       <Price>{price}원</Price>
-      <Button onClick={toggleItem.bind(this, id)} style={StyledHeartButton}>
-        {isHave ? (
-          <FaHeart color="#FC3C46" size="21px" />
-        ) : (
-          <FaRegHeart color="#FFFFFF" size="21px" />
-        )}
-      </Button>
+      <StyledHoverButton>
+        <Button onClick={toggleItem.bind(this, id)} style={StyledHeartButton}>
+          {isHave ? (
+            <FaHeart color="#FC3C46" size="21px" />
+          ) : (
+            <FaRegHeart color="#FFFFFF" size="21px" />
+          )}
+        </Button>
+      </StyledHoverButton>
     </ProductItemWrapper>
   );
 };
@@ -57,9 +59,25 @@ ProductItem.propTypes = {
 
 const StyledHeartButton = {
   position: 'absolute',
-  top: '8px',
-  right: '8px'
+  top: '50%',
+  left: '50%',
+  transform: 'translate(-50%, -50%)',
+  padding: '0',
+  width: '21px',
+  height: '21px'
 };
+
+const StyledHoverButton = styled.div`
+  position: absolute;
+  top: 2%;
+  right: 2%;
+  width: 30px;
+  height: 30px;
+  border-radius: 100%;
+  &:hover {
+    background-color: #ffffff50;
+  }
+`;
 
 const ProductItemWrapper = styled.div`
   position: relative;
