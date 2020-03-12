@@ -34,7 +34,7 @@ const Cart = () => {
 
 const StyledCart = styled.div`
   margin: 0 auto;
-  width: 88%;
+  width: 62%;
 `;
 
 const Title = styled.h2`
