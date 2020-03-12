@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../../App';
-import { getDataApi } from '../../utils';
+import { getDataApi } from '../../api';
 import CartItem from './CartItem';
 import Price from './Price';
 import styled from 'styled-components';
