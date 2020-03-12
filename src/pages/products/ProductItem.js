@@ -36,7 +36,7 @@ const ProductItem = product => {
         <LazyLoadImage src={coverImage} effect="blur" alt={title} />
       </ImageWrapper>
       <Title>{title}</Title>
-      <Price>{price}원</Price>
+      <Price>{price.toLocaleString()}원</Price>
       <StyledHoverButton>
         <Button onClick={toggleItem.bind(this, id)} style={StyledHeartButton}>
           {isHave ? (
@@ -91,16 +91,18 @@ const ProductItemWrapper = styled.div`
 
 const ImageWrapper = styled.div`
   overflow: hidden;
-  img {
-    display: block;
-    width: 100%;
-    height: 190px;
-    border-radius: 3px;
-    transition: 0.3s;
-    &:hover {
-      transform: scale(1.1);
+  span {
+    img {
+      display: block;
+      width: 100%;
+      height: 190px;
+      border-radius: 3px;
       transition: 0.3s;
     }
+        &:hover {
+          transform: scale(1.1);
+          transition: 0.3s;
+        }
   }
 `;
 
@@ -120,7 +122,6 @@ const Title = styled.title`
 
 const Price = styled.p`
   position: absolute;
-  left: 10px;
   bottom: 10px;
   font-size: 15px;
   font-weight: 700;
