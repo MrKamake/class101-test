@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
-import { CartContext } from '../../App';
+import { CartContext } from '../App';
 import styled from 'styled-components';
 import CountUp from 'react-countup';
-import colors from '../../styles/colors';
+import colors from '../styles/colors';
 
 const Price = () => {
   const { cartList } = useContext(CartContext);

@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import { CartContext } from '../../App';
+import { CartContext } from '../App';
 import styled from 'styled-components';
-import Button from '../../components/Button';
+import Button from './Button';
 import { TiHeartFullOutline, TiHeartOutline } from 'react-icons/ti';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import colors from '../../styles/colors';
+import colors from '../styles/colors';
 
 const ProductItem = product => {
   const { id, title, coverImage, price } = product;
@@ -71,6 +71,7 @@ const ProductItemWrapper = styled.div`
 const ImageWrapper = styled.div`
   overflow: hidden;
   background-color: ${colors.lazyGray};
+  height: 190px;
   img {
     display: block;
     width: 100%;
@@ -88,7 +89,7 @@ const ImageWrapper = styled.div`
 
 const Title = styled.title`
   display: -webkit-box;
-  margin: 7px 0;
+  padding: 6px 0;
   height: 40px;
   line-height: 20px;
   font-size: 15px;

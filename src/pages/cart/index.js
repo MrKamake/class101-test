@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { CartContext } from '../../App';
 import { getDataApi } from '../../api';
 import styled from 'styled-components';
-import CartItem from './CartItem';
-import Price from './Price';
+import CartItem from '../../components/CartItem';
+import Price from '../../components/Price';
 import colors from '../../styles/colors';
 
 const Cart = () => {

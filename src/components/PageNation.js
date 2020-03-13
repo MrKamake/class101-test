@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import colors from '../../styles/colors';
+import colors from '../styles/colors';
 
 const PageNation = ({ items, trimNumber, onChagePage }) => {
   const pageNum = Math.ceil(items.length / trimNumber);

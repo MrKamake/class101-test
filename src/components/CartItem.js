@@ -1,9 +1,9 @@
 import React, { useContext } from 'react';
-import { CartContext } from '../../App';
+import { CartContext } from '../App';
 import styled from 'styled-components';
-import Button from '../../components/Button';
+import Button from './Button';
 import { TiHeartFullOutline } from 'react-icons/ti';
-import colors from '../../styles/colors';
+import colors from '../styles/colors';
 
 const CartItem = ({ item, coupons }) => {
   const { cartList, setCartList } = useContext(CartContext);
@@ -94,7 +94,7 @@ const CartItem = ({ item, coupons }) => {
             )}
           </select>
         </SelectWrapper>
-        <Price>{price}원</Price>
+        <Price>{price.toLocaleString()}원</Price>
       </ProductItemWrapper>
     </>
   );
@@ -108,16 +108,16 @@ const ProductItemWrapper = styled.div`
   overflow: hidden;
 `;
 
-const ImageWrapper = styled.div`
-  overflow: hidden;
-`;
-
 const StyledCheckbox = styled.input`
   position: absolute;
   top: 8px;
   left: 8px;
   cursor: pointer;
   transform: scale(1.3);
+`;
+
+const ImageWrapper = styled.div`
+  overflow: hidden;
 `;
 
 const Img = styled.img`
