@@ -8,16 +8,18 @@ import PageNation from '../../components/PageNation';
 const Products = () => {
   const [productItems, setProductItems] = useState([]);
   const [pageItems, setPageItems] = useState([]);
+  const TrimNumber = 5;
 
   useEffect(() => {
     getDataApi('productItems').then(res => {
       res.sort((a, b) => b.score - a.score);
       setProductItems(res);
+      setPageItems(res.slice(0, TrimNumber));
     });
   }, []);
 
-  const handleChangePage = pageItems => {
-    setPageItems(pageItems);
+  const handleChangePage = pageProducts => {
+    setPageItems(pageProducts);
   };
 
   const renderProducts = () =>
@@ -26,33 +28,31 @@ const Products = () => {
   if (productItems.length === 0) return <Loading />;
 
   return (
-    <StyledCart>
+    <StyledProducts>
       <Title>인기 클래스</Title>
-      <StyledProducts>
+      <ProductsWrapper>
         {renderProducts()}
         <PageNation
           items={productItems}
-          trimNumber={5}
           onChagePage={handleChangePage}
         />
-      </StyledProducts>
-    </StyledCart>
+      </ProductsWrapper>
+    </StyledProducts>
   );
 };
 
-const StyledCart = styled.div`
+const StyledProducts = styled.div`
   margin: 0 auto;
   width: 62%;
 `;
 
-const StyledProducts = styled.div`
+const ProductsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto;
 `;
 
 const Title = styled.h2`
-  display: block;
   font-weight: bold;
 `;
 
