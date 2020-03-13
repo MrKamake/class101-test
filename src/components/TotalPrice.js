@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import CountUp from 'react-countup';
 import colors from '../styles/colors';
 
-const Price = () => {
+const TotalPrice = () => {
   const { cartList } = useContext(CartContext);
 
   const getTotalPrice = () =>
@@ -149,4 +149,4 @@ const TableFoot = styled.tfoot`
   }
 `;
 
-export default Price;
+export default TotalPrice;

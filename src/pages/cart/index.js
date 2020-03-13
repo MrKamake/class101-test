@@ -4,12 +4,13 @@ import { CartContext } from '../../App';
 import { getDataApi } from '../../api';
 import styled from 'styled-components';
 import CartItem from '../../components/CartItem';
-import Price from '../../components/Price';
+import TotalPrice from '../../components/TotalPrice';
 import colors from '../../styles/colors';
 
 const Cart = () => {
   const [coupons, setCoupons] = useState([]);
   const { cartList } = useContext(CartContext);
+  const emptyCartList = cartList.length === 0;
 
   useEffect(() => {
     getDataApi('coupons').then(coupons => {
@@ -20,15 +21,13 @@ const Cart = () => {
   return (
     <StyledCart>
       <Title>찜한 클래스</Title>
-      <CartItemsWrapper isHave={cartList.length !== 0 ? true : false}>
-        {cartList.length !== 0 || (
-          <Link to="/products">Class를 찜해주세요 :)</Link>
-        )}
+      <CartItemsWrapper isHave={!emptyCartList}>
+        {!emptyCartList || <Link to="/products">Class를 찜해주세요 :)</Link>}
         {cartList.map(item => (
           <CartItem key={item.product.id} item={item} coupons={coupons} />
         ))}
       </CartItemsWrapper>
-      {cartList.length !== 0 && <Price />}
+      {!emptyCartList && <TotalPrice />}
     </StyledCart>
   );
 };
@@ -39,7 +38,6 @@ const StyledCart = styled.div`
 `;
 
 const Title = styled.h2`
-  display: block;
   font-weight: bold;
 `;
 
