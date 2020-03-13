@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { CartContext } from '../../App';
 import styled from 'styled-components';
 import CountUp from 'react-countup';
+import colors from '../../styles/colors';
 
 const Price = () => {
   const { cartList } = useContext(CartContext);
@@ -72,7 +73,7 @@ const PriceWrapper = styled.div`
   padding-top: 20px;
   border-top: solid;
   border-width: 1px;
-  border-color: F8F8F9;
+  border-color: ${colors.darkGray};
 `;
 
 const StyledPrice = styled.div`
@@ -80,7 +81,7 @@ const StyledPrice = styled.div`
   right: 0;
   width: 40%;
   padding: 20px;
-  background-color: #f8f8f9;
+  background-color: ${colors.lightGray};
   border-radius: 3px;
 `;
 
@@ -90,7 +91,7 @@ const Title = styled.h4`
   line-height: 28px;
   font-size: 20px;
   font-weight: bold;
-  color: rgb(62, 64, 66);
+  color: ${colors.darkGray};
   letter-spacing: -0.3px;
 `;
 
@@ -109,7 +110,7 @@ const TableBody = styled.tbody`
       font-weight: normal;
       line-height: 20px;
       letter-spacing: -0.2px;
-      color: rgb(133, 138, 141);
+      color: ${colors.gray};
     }
     th {
       text-align: left;
@@ -121,7 +122,7 @@ const TableBody = styled.tbody`
   .discount-text {
     th,
     td {
-      color: #ff912a;
+      color: ${colors.orange};
     }
   }
 `;
@@ -137,7 +138,7 @@ const TableFoot = styled.tfoot`
       font-weight: bold;
       line-height: 20px;
       letter-spacing: -0.2px;
-      color: rgb(62, 64, 66);
+      color: ${colors.darkGray};
     }
     th {
       text-align: left;

@@ -1,6 +1,6 @@
 import React, { useState, createContext } from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import styled, { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 import Header from './components/Header';
 import Products from './pages/products';
 import Cart from './pages/cart';

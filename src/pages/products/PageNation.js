@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import colors from '../../styles/colors';
 
 const PageNation = ({ items, trimNumber, onChagePage }) => {
   const pageNum = Math.ceil(items.length / trimNumber);
@@ -31,7 +32,7 @@ const PageNation = ({ items, trimNumber, onChagePage }) => {
               const page = index + 1;
               return (
                 <li
-                  className={currentPage === page && 'active'}
+                  className={currentPage === page ? 'active' : null}
                   onClick={() =>
                     currentPage === page || handleClickPage(page, index)
                   }
@@ -77,7 +78,7 @@ const StyledPageNation = styled.ul`
   }
   .active {
     border-bottom: 3px solid black;
-    color: rgb(27, 28, 29);
+    color: ${colors.classBlack};
     font-weight: 800;
     cursor: default;
   }

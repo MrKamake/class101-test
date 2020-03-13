@@ -2,7 +2,8 @@ import React, { useContext } from 'react';
 import { CartContext } from '../../App';
 import styled from 'styled-components';
 import Button from '../../components/Button';
-import { FaHeart } from 'react-icons/fa';
+import { TiHeartFullOutline } from 'react-icons/ti';
+import colors from '../../styles/colors';
 
 const CartItem = ({ item, coupons }) => {
   const { cartList, setCartList } = useContext(CartContext);
@@ -76,7 +77,7 @@ const CartItem = ({ item, coupons }) => {
             onClick={removeCartlist.bind(this, id)}
             style={StyledHeartButton}
           >
-            <FaHeart color="#FC3C46" size="21px" />
+            <TiHeartFullOutline color={`${colors.pink}`} size="26px" />
           </Button>
         </StyledHoverButton>
         <SelectWrapper>
@@ -124,6 +125,7 @@ const Img = styled.img`
   width: 100%;
   height: 190px;
   border-radius: 3px;
+  transition: 0.3s;
   &:hover {
     transform: scale(1.1);
     transition: 0.3s;
@@ -138,7 +140,7 @@ const Title = styled.title`
   font-size: 15px;
   font-weight: normal;
   letter-spacing: -0.2px;
-  color: rgb(27, 28, 29);
+  color: ${colors.classBlack};
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
@@ -152,9 +154,8 @@ const SelectWrapper = styled.div`
 const Price = styled.p`
   font-size: 15px;
   font-weight: 700;
-  color: rgb(27, 28, 29);
+  color: ${colors.classBlack};
 `;
-
 
 const StyledHeartButton = {
   position: 'absolute',
@@ -162,21 +163,20 @@ const StyledHeartButton = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   padding: '0',
-  width: '21px',
-  height: '21px'
+  width: '26px',
+  height: '26px'
 };
 
 const StyledHoverButton = styled.div`
   position: absolute;
-  top: 2%;
+  top: 1%;
   right: 2%;
   width: 30px;
   height: 30px;
   border-radius: 100%;
   &:hover {
-    background-color: #ffffff50;
+    background-color: ${colors.transparentWhite};
   }
 `;
-
 
 export default CartItem;

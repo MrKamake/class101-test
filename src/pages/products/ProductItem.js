@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import { CartContext } from '../../App';
 import styled from 'styled-components';
 import Button from '../../components/Button';
-import { FaRegHeart, FaHeart } from 'react-icons/fa';
+import { TiHeartFullOutline, TiHeartOutline } from 'react-icons/ti';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
+import colors from '../../styles/colors';
 
 const ProductItem = product => {
   const { id, title, coverImage, price } = product;
@@ -40,9 +41,9 @@ const ProductItem = product => {
       <StyledHoverButton>
         <Button onClick={toggleItem.bind(this, id)} style={StyledHeartButton}>
           {isHave ? (
-            <FaHeart color="#FC3C46" size="21px" />
+            <TiHeartFullOutline color={`${colors.pink}`} size="26px" />
           ) : (
-            <FaRegHeart color="#FFFFFF" size="21px" />
+            <TiHeartOutline color={`${colors.white}`} size="26px" />
           )}
         </Button>
       </StyledHoverButton>
@@ -69,18 +70,19 @@ const ProductItemWrapper = styled.div`
 
 const ImageWrapper = styled.div`
   overflow: hidden;
-  span {
-    img {
-      display: block;
-      width: 100%;
-      height: 190px;
-      border-radius: 3px;
+  background-color: ${colors.lazyGray};
+  img {
+    display: block;
+    width: 100%;
+    height: 190px;
+    border-radius: 3px;
+  }
+  .lazy-load-image-background.blur.lazy-load-image-loaded {
+    transition: 0.3s;
+    &:hover {
+      transform: scale(1.1);
       transition: 0.3s;
     }
-        &:hover {
-          transform: scale(1.1);
-          transition: 0.3s;
-        }
   }
 `;
 
@@ -92,7 +94,7 @@ const Title = styled.title`
   font-size: 15px;
   font-weight: normal;
   letter-spacing: -0.2px;
-  color: rgb(27, 28, 29);
+  color: ${colors.classBlack};
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   overflow: hidden;
@@ -103,7 +105,7 @@ const Price = styled.p`
   bottom: 10px;
   font-size: 15px;
   font-weight: 700;
-  color: rgb(27, 28, 29);
+  color: ${colors.classBlack};
 `;
 
 const StyledHeartButton = {
@@ -112,19 +114,19 @@ const StyledHeartButton = {
   left: '50%',
   transform: 'translate(-50%, -50%)',
   padding: '0',
-  width: '21px',
-  height: '21px'
+  width: '26px',
+  height: '26px'
 };
 
 const StyledHoverButton = styled.div`
   position: absolute;
-  top: 2%;
+  top: 1%;
   right: 2%;
   width: 30px;
   height: 30px;
   border-radius: 100%;
   &:hover {
-    background-color: #ffffff50;
+    background-color: ${colors.transparentWhite};
   }
 `;
 

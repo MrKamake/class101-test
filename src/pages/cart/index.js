@@ -5,6 +5,7 @@ import { getDataApi } from '../../api';
 import styled from 'styled-components';
 import CartItem from './CartItem';
 import Price from './Price';
+import colors from '../../styles/colors';
 
 const Cart = () => {
   const [coupons, setCoupons] = useState([]);
@@ -47,7 +48,8 @@ const CartItemsWrapper = styled.div`
   flex-wrap: wrap;
   position: relative;
   height: ${props => props.isHave || '600px'};
-  background-color: ${props => (props.isHave ? '#FFFFFF' : '#f8f8f9')};
+  background-color: ${props =>
+    props.isHave ? `${colors.white}` : `${colors.lightGray}`};
   border-radius: 3px;
   a {
     position: absolute;
@@ -55,7 +57,7 @@ const CartItemsWrapper = styled.div`
     left: 50%;
     transform: translate(-50%, -50%);
     text-decoration: none;
-    color: #f33240;
+    color: ${colors.classRedyellow};
     font-size: 1.5rem;
   }
 `;
