@@ -50,6 +50,7 @@ const ProductsWrapper = styled.div`
 `;
 
 const Title = styled.h2`
+  margin: 4% 0;
   font-weight: bold;
 `;
 

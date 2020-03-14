@@ -70,7 +70,7 @@ const PageNationWrapper = styled.div`
 `;
 
 const StyledPageNation = styled.ul`
-  margin: 30px 0px;
+  margin: 0;
   padding-left: 0px;
   li {
     display: inline-block;

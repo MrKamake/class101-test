@@ -37,10 +37,6 @@ const StyledCart = styled.div`
   width: 62%;
 `;
 
-const Title = styled.h2`
-  font-weight: bold;
-`;
-
 const CartItemsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -58,6 +54,11 @@ const CartItemsWrapper = styled.div`
     color: ${colors.classRedyellow};
     font-size: 1.5rem;
   }
+`;
+
+const Title = styled.h2`
+  margin: 4% 0;
+  font-weight: bold;
 `;
 
 export default Cart;
