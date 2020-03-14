@@ -30,10 +30,8 @@ const Products = () => {
   return (
     <StyledProducts>
       <Title>인기 클래스</Title>
-      <ProductsWrapper>
-        {renderProducts()}
-        <PageNation items={productItems} onChagePage={handleChangePage} />
-      </ProductsWrapper>
+      <ProductsWrapper>{renderProducts()}</ProductsWrapper>
+      <PageNation items={productItems} onChagePage={handleChangePage} />
     </StyledProducts>
   );
 };

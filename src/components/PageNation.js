@@ -64,9 +64,14 @@ PageNation.propTypes = {
 };
 
 const PageNationWrapper = styled.div`
-  display: block;
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1% 0 3%;
   width: 100%;
   text-align: center;
+  background-color: ${colors.white};
 `;
 
 const StyledPageNation = styled.ul`
