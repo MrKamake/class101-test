@@ -24,13 +24,16 @@ const TotalPrice = () => {
         coupon: { type, discount }
       } = item;
 
-      return selected
-        ? type === 'rate'
-          ? totalDiscount + (price * quantity) / discount
-          : type === 'amount'
-          ? totalDiscount + discount
-          : totalDiscount
-        : totalDiscount;
+      if (selected) {
+        switch (type) {
+          case 'rate':
+            return totalDiscount + (price * quantity) / discount;
+          case 'amount':
+            return totalDiscount + discount;
+          default:
+            return totalDiscount;
+        }
+      }
     }, 0);
 
   return (
@@ -45,7 +48,9 @@ const TotalPrice = () => {
             </tr>
             <tr className="discount-text">
               <th>상품 할인 금액</th>
-              <td>- {getDiscountPrice().toLocaleString()}원</td>
+              <td>
+                - {getDiscountPrice() && getDiscountPrice().toLocaleString()}원
+              </td>
             </tr>
           </TableBody>
           <TableFoot>

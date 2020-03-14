@@ -15,19 +15,23 @@ const ProductItem = product => {
 
   const toggleItem = id => {
     const callback = ({ product }) => product.id !== id;
-    cartList.every(callback)
-      ? cartList.length < UP_TO_THREE
-        ? setCartList([
-            ...cartList,
-            {
-              product,
-              selected: true,
-              quantity: INITIAL_QUANTITY,
-              coupon: { type: '', discount: INITIAL_NUMBER }
-            }
-          ])
-        : alert('장바구니에는 3개까지 담을 수 있어요. :)')
-      : setCartList(cartList.filter(callback));
+    const isCartList = cartList.every(callback);
+
+    if (!isCartList) {
+      setCartList(cartList.filter(callback));
+    } else if (cartList.length < UP_TO_THREE) {
+      setCartList([
+        ...cartList,
+        {
+          product,
+          selected: true,
+          quantity: INITIAL_QUANTITY,
+          coupon: { type: '', discount: INITIAL_NUMBER }
+        }
+      ]);
+    } else {
+      alert('장바구니에는 3개까지 담을 수 있어요. :)');
+    }
   };
 
   const isHave = cartList.some(({ product }) => product.id === id);

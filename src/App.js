@@ -9,10 +9,9 @@ export const CartContext = createContext();
 
 const App = () => {
   const [cartList, setCartList] = useState([]);
-  const globalState = { cartList, setCartList };
 
   return (
-    <CartContext.Provider value={globalState}>
+    <CartContext.Provider value={{ cartList, setCartList }}>
       <GlobalStyle />
       <Header />
       <Route exact path="/" render={() => <Redirect to="/products" />} />

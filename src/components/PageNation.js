@@ -3,22 +3,20 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import colors from '../styles/colors';
 import {
-  FIRST_PAGE,
   PLUS_PAGE_INDEX,
   TRIM_NUMBER,
-  LIFT_UP_TOP,
   NUMBER_OF_ITEMS
 } from '../constants';
 
 const PageNation = ({ items, onChagePage }) => {
   const pageNum = Math.ceil(items.length / TRIM_NUMBER);
-  const [currentPage, setCurrentPage] = useState(FIRST_PAGE);
+  const [currentPage, setCurrentPage] = useState(1);
 
   const setScrollTop = () => {
     const { documentElement, body } = document;
-    if (documentElement) documentElement.scrollTop = LIFT_UP_TOP;
+    if (documentElement) documentElement.scrollTop = 0;
     // Safari
-    body.scrollTop = LIFT_UP_TOP;
+    body.scrollTop = 0;
   };
 
   const handleClickPage = (page, index) => {
