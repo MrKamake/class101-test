@@ -4,6 +4,7 @@ import styled from 'styled-components';
 import Button from './Button';
 import { TiHeartFullOutline } from 'react-icons/ti';
 import colors from '../styles/colors';
+import PropTypes from 'prop-types';
 
 const CartItem = ({ item, coupons }) => {
   const { cartList, setCartList } = useContext(CartContext);
@@ -98,6 +99,16 @@ const CartItem = ({ item, coupons }) => {
       </ProductItemWrapper>
     </>
   );
+};
+
+CartItem.propTypes = {
+  item: PropTypes.shape({
+    id: PropTypes.string,
+    title: PropTypes.string,
+    coverImage: PropTypes.string,
+    price: PropTypes.number
+  }),
+  coupons: PropTypes.array
 };
 
 const ProductItemWrapper = styled.div`
