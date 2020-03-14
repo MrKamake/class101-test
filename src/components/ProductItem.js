@@ -7,6 +7,7 @@ import { TiHeartFullOutline, TiHeartOutline } from 'react-icons/ti';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import colors from '../styles/colors';
+import { UP_TO_THREE, INITIAL_QUANTITY, INITIAL_NUMBER } from '../constants';
 
 const ProductItem = product => {
   const { id, title, coverImage, price } = product;
@@ -15,14 +16,14 @@ const ProductItem = product => {
   const toggleItem = id => {
     const callback = ({ product }) => product.id !== id;
     cartList.every(callback)
-      ? cartList.length < 3
+      ? cartList.length < UP_TO_THREE
         ? setCartList([
             ...cartList,
             {
               product,
               selected: true,
-              quantity: 1,
-              coupon: { type: '', discount: 0 }
+              quantity: INITIAL_QUANTITY,
+              coupon: { type: '', discount: INITIAL_NUMBER }
             }
           ])
         : alert('장바구니에는 3개까지 담을 수 있어요. :)')

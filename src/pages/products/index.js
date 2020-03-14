@@ -4,17 +4,17 @@ import styled from 'styled-components';
 import Loading from '../../components/Loading';
 import ProductItem from '../../components/ProductItem';
 import PageNation from '../../components/PageNation';
+import { TRIM_NUMBER } from '../../constants';
 
 const Products = () => {
   const [productItems, setProductItems] = useState([]);
   const [pageItems, setPageItems] = useState([]);
-  const TrimNumber = 5;
 
   useEffect(() => {
     getDataApi('productItems').then(res => {
       res.sort((a, b) => b.score - a.score);
       setProductItems(res);
-      setPageItems(res.slice(0, TrimNumber));
+      setPageItems(res.slice(0, TRIM_NUMBER));
     });
   }, []);
 
@@ -32,10 +32,7 @@ const Products = () => {
       <Title>인기 클래스</Title>
       <ProductsWrapper>
         {renderProducts()}
-        <PageNation
-          items={productItems}
-          onChagePage={handleChangePage}
-        />
+        <PageNation items={productItems} onChagePage={handleChangePage} />
       </ProductsWrapper>
     </StyledProducts>
   );

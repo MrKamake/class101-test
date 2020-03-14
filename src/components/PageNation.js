@@ -2,20 +2,30 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import colors from '../styles/colors';
+import {
+  FIRST_PAGE,
+  PLUS_PAGE_INDEX,
+  TRIM_NUMBER,
+  LIFT_UP_TOP,
+  NUMBER_OF_ITEMS
+} from '../constants';
 
-const PageNation = ({ items, trimNumber, onChagePage }) => {
-  const pageNum = Math.ceil(items.length / trimNumber);
-  const [currentPage, setCurrentPage] = useState(1);
+const PageNation = ({ items, onChagePage }) => {
+  const pageNum = Math.ceil(items.length / TRIM_NUMBER);
+  const [currentPage, setCurrentPage] = useState(FIRST_PAGE);
 
   const setScrollTop = () => {
     const { documentElement, body } = document;
-    if (documentElement) documentElement.scrollTop = 0;
+    if (documentElement) documentElement.scrollTop = LIFT_UP_TOP;
     // Safari
-    body.scrollTop = 0;
+    body.scrollTop = LIFT_UP_TOP;
   };
 
   const handleClickPage = (page, index) => {
-    onChagePage(items.slice(trimNumber * index, trimNumber * index + 5));
+    const startSliceNumber = TRIM_NUMBER * index;
+    onChagePage(
+      items.slice(startSliceNumber, startSliceNumber + NUMBER_OF_ITEMS)
+    );
     setCurrentPage(page);
     setScrollTop();
   };
@@ -25,7 +35,7 @@ const PageNation = ({ items, trimNumber, onChagePage }) => {
       <StyledPageNation>
         {items.length !== 0
           ? new Array(pageNum).fill(null).map((_, index) => {
-              const page = index + 1;
+              const page = index + PLUS_PAGE_INDEX;
               return (
                 <li
                   className={currentPage === page ? 'active' : null}
@@ -45,13 +55,11 @@ const PageNation = ({ items, trimNumber, onChagePage }) => {
 };
 
 PageNation.defaultProps = {
-  items: [],
-  trimNumber: 5
+  items: []
 };
 
 PageNation.propTypes = {
   items: PropTypes.array,
-  trimNumber: PropTypes.number,
   onChagePage: PropTypes.func.isRequired
 };
 

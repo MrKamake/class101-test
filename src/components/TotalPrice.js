@@ -3,6 +3,7 @@ import { CartContext } from '../App';
 import styled from 'styled-components';
 import CountUp from 'react-countup';
 import colors from '../styles/colors';
+import { INITIAL_NUMBER, COUNT_UP_DURATION } from '../constants';
 
 const TotalPrice = () => {
   const { cartList } = useContext(CartContext);
@@ -52,9 +53,9 @@ const TotalPrice = () => {
               <th>최종 가격</th>
               <td>
                 <CountUp
-                  start={0}
+                  start={INITIAL_NUMBER}
                   end={getTotalPrice() - getDiscountPrice()}
-                  duration={1}
+                  duration={COUNT_UP_DURATION}
                   separator=","
                   suffix="원"
                 />
