@@ -1,39 +1,14 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { CartContext } from '../App';
 import styled from 'styled-components';
 import Button from './Button';
 import { TiHeartFullOutline, TiHeartOutline } from 'react-icons/ti';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import colors from '../styles/colors';
-import { UP_TO_THREE, INITIAL_QUANTITY, INITIAL_NUMBER } from '../constants';
 
-const ProductItem = product => {
+const ProductItem = ({ product, onClick, cartList }) => {
   const { id, title, coverImage, price } = product;
-  const { cartList, setCartList } = useContext(CartContext);
-
-  const toggleItem = id => {
-    const callback = ({ product }) => product.id !== id;
-    const isCartList = cartList.every(callback);
-
-    if (!isCartList) {
-      setCartList(cartList.filter(callback));
-    } else if (cartList.length < UP_TO_THREE) {
-      setCartList([
-        ...cartList,
-        {
-          product,
-          selected: true,
-          quantity: INITIAL_QUANTITY,
-          coupon: { type: '', discount: INITIAL_NUMBER }
-        }
-      ]);
-    } else {
-      alert('장바구니에는 3개까지 담을 수 있어요. :)');
-    }
-  };
-
   const isHave = cartList.some(({ product }) => product.id === id);
 
   return (
@@ -44,7 +19,7 @@ const ProductItem = product => {
       <Title>{title}</Title>
       <Price>{price.toLocaleString()}원</Price>
       <StyledHoverButton>
-        <Button onClick={toggleItem.bind(this, id)} style={StyledHeartButton}>
+        <Button onClick={() => onClick(product)} style={StyledHeartButton}>
           {isHave ? (
             <TiHeartFullOutline color={`${colors.pink}`} size="26px" />
           ) : (
@@ -57,7 +32,7 @@ const ProductItem = product => {
 };
 
 ProductItem.propTypes = {
-  item: PropTypes.shape({
+  product: PropTypes.shape({
     id: PropTypes.string,
     title: PropTypes.string,
     coverImage: PropTypes.string,
