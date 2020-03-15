@@ -15,24 +15,25 @@ const TotalPrice = () => {
       0
     );
 
-  const getDiscountPrice = () =>
-    cartList.reduce((totalDiscount, item) => {
+  const getDiscountPrice = () => {
+    return cartList.reduce((totalDiscount, item) => {
       const {
         product: { price },
         selected,
         quantity,
         coupon: { type, discount }
       } = item;
-
-      switch (selected) {
-        case type === 'rate':
+      if (!selected) return totalDiscount;
+      switch (type) {
+        case 'rate':
           return totalDiscount + (price * quantity) / discount;
-        case type === 'amount':
+        case 'amount':
           return totalDiscount + discount;
         default:
           return totalDiscount;
       }
     }, 0);
+  };
 
   return (
     <PriceWrapper>
