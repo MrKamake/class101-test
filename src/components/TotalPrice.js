@@ -24,15 +24,13 @@ const TotalPrice = () => {
         coupon: { type, discount }
       } = item;
 
-      if (selected) {
-        switch (type) {
-          case 'rate':
-            return totalDiscount + (price * quantity) / discount;
-          case 'amount':
-            return totalDiscount + discount;
-          default:
-            return totalDiscount;
-        }
+      switch (selected) {
+        case type === 'rate':
+          return totalDiscount + (price * quantity) / discount;
+        case type === 'amount':
+          return totalDiscount + discount;
+        default:
+          return totalDiscount;
       }
     }, 0);
 
