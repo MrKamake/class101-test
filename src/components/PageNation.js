@@ -2,14 +2,10 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import colors from '../styles/colors';
-import {
-  PLUS_PAGE_INDEX,
-  TRIM_NUMBER,
-  NUMBER_OF_ITEMS
-} from '../constants';
+import { PLUS_PAGE_INDEX, TRIM_NUMBER } from '../constants';
 
-const PageNation = ({ items, onChagePage }) => {
-  const pageNum = Math.ceil(items.length / TRIM_NUMBER);
+const PageNation = ({ numberOfItems, onChagePage }) => {
+  const pageNum = Math.ceil(numberOfItems / TRIM_NUMBER);
   const [currentPage, setCurrentPage] = useState(1);
 
   const setScrollTop = () => {
@@ -19,11 +15,8 @@ const PageNation = ({ items, onChagePage }) => {
     body.scrollTop = 0;
   };
 
-  const handleClickPage = (page, index) => {
-    const startSliceNumber = TRIM_NUMBER * index;
-    onChagePage(
-      items.slice(startSliceNumber, startSliceNumber + NUMBER_OF_ITEMS)
-    );
+  const handleClickPage = page => {
+    onChagePage(page);
     setCurrentPage(page);
     setScrollTop();
   };
@@ -31,22 +24,19 @@ const PageNation = ({ items, onChagePage }) => {
   return (
     <PageNationWrapper>
       <StyledPageNation>
-        {items.length !== 0
-          ? new Array(pageNum).fill(null).map((_, index) => {
-              const page = index + PLUS_PAGE_INDEX;
-              return (
-                <li
-                  className={currentPage === page ? 'active' : null}
-                  onClick={() =>
-                    currentPage === page || handleClickPage(page, index)
-                  }
-                  key={index}
-                >
-                  {page}
-                </li>
-              );
-            })
-          : null}
+        {new Array(pageNum).fill(null).map((_, index) => {
+          const page = index + PLUS_PAGE_INDEX;
+          const isCurrentPage = currentPage === page;
+          return (
+            <li
+              className={isCurrentPage ? 'active' : null}
+              onClick={() => isCurrentPage || handleClickPage(page)}
+              key={index}
+            >
+              {page}
+            </li>
+          );
+        })}
       </StyledPageNation>
     </PageNationWrapper>
   );

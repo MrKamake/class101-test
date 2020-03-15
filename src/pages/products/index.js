@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import Loading from '../../components/Loading';
 import ProductItem from '../../components/ProductItem';
 import PageNation from '../../components/PageNation';
-import { TRIM_NUMBER } from '../../constants';
+import { TRIM_NUMBER, NUMBER_OF_ITEMS } from '../../constants';
 
 const Products = () => {
   const [productItems, setProductItems] = useState([]);
@@ -18,8 +18,11 @@ const Products = () => {
     });
   }, []);
 
-  const handleChangePage = pageProducts => {
-    setPageItems(pageProducts);
+  const handleChangePage = page => {
+    const startSliceNumber = 5 * (page - 1);
+    setPageItems(
+      productItems.slice(startSliceNumber, startSliceNumber + NUMBER_OF_ITEMS)
+    );
   };
 
   const renderProducts = () =>
@@ -31,7 +34,10 @@ const Products = () => {
     <StyledProducts>
       <Title>인기 클래스</Title>
       <ProductsWrapper>{renderProducts()}</ProductsWrapper>
-      <PageNation items={productItems} onChagePage={handleChangePage} />
+      <PageNation
+        numberOfItems={productItems.length}
+        onChagePage={handleChangePage}
+      />
     </StyledProducts>
   );
 };
