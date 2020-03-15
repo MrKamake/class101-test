@@ -1,33 +1,21 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { CartContext } from '../../App';
-import { getDataApi } from '../../api';
+import React, { useContext } from 'react';
 import styled from 'styled-components';
-import CartItem from '../../components/CartItem';
-import TotalPrice from '../../components/TotalPrice';
-import colors from '../../styles/colors';
+import { Link } from 'react-router-dom';
+import { CartContext } from '../App';
+import CartContainer from '../containers/CartContainer';
+import colors from '../styles/colors';
 
 const Cart = () => {
-  const [coupons, setCoupons] = useState([]);
   const { cartList } = useContext(CartContext);
   const emptyCartList = cartList.length === 0;
-
-  useEffect(() => {
-    getDataApi('coupons').then(coupons => {
-      setCoupons(coupons);
-    });
-  }, []);
 
   return (
     <StyledCart>
       <Title>찜한 클래스</Title>
-      <CartItemsWrapper isHave={!emptyCartList}>
+      <CartWrapper isHave={!emptyCartList}>
         {!emptyCartList || <Link to="/products">Class를 찜해주세요 :)</Link>}
-        {cartList.map(item => (
-          <CartItem key={item.product.id} item={item} coupons={coupons} />
-        ))}
-      </CartItemsWrapper>
-      {!emptyCartList && <TotalPrice />}
+        <CartContainer cartList={cartList} />
+      </CartWrapper>
     </StyledCart>
   );
 };
@@ -37,7 +25,7 @@ const StyledCart = styled.div`
   width: 62%;
 `;
 
-const CartItemsWrapper = styled.div`
+const CartWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   position: relative;

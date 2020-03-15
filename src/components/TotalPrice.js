@@ -73,9 +73,12 @@ const TotalPrice = () => {
 };
 
 const PriceWrapper = styled.div`
-  position: relative;
-  margin-top: 3%;
-  padding-top: 4%;
+  position: fixed;
+  bottom: 35%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1% 0 3%;
+  width: 62%;
   border-top: solid;
   border-width: 1px;
   border-color: ${colors.darkGray};
@@ -139,7 +142,6 @@ const TableFoot = styled.tfoot`
       margin: 0px;
       padding-top: 15px;
       border-top: 1px solid ${colors.darkGray};
-      ont-size: 14px;
       font-weight: bold;
       line-height: 20px;
       letter-spacing: -0.2px;

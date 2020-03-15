@@ -3,7 +3,7 @@ import { Route, Redirect } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
 import Header from './components/Header';
 import ProductsPage from './pages/ProductsPage';
-import Cart from './pages/cart';
+import CartPage from './pages/CartPage';
 
 export const CartContext = createContext();
 
@@ -16,7 +16,7 @@ const App = () => {
       <Header />
       <Route exact path="/" render={() => <Redirect to="/products" />} />
       <Route path="/products" component={ProductsPage} />
-      <Route path="/cart" component={Cart} />
+      <Route path="/cart" component={CartPage} />
     </CartContext.Provider>
   );
 };
