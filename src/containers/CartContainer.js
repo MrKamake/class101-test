@@ -2,8 +2,8 @@ import React, { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { CartContext } from '../App';
 import { getDataApi } from '../api';
-import ProductItem from '../components/ProductItem';
-import CartItemViewer from '../components/CartItemViewer';
+import ProductItem from '../components/common/ProductItem';
+import CartItemViewer from '../components/cart/CartItemViewer';
 
 const CartContainer = ({ cartList }) => {
   const { setCartList } = useContext(CartContext);

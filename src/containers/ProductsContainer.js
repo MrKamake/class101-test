@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { CartContext } from '../App';
 import { getDataApi } from '../api';
-import Loading from '../components/Loading';
-import ProductItem from '../components/ProductItem';
-import PageNation from '../components/PageNation';
+import Loading from '../components/common/Loading';
+import ProductItem from '../components/common/ProductItem';
+import PageNation from '../components/product/PageNation';
 import {
   TRIM_NUMBER,
   NUMBER_OF_ITEMS,

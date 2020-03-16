@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import colors from '../styles/colors';
-import { PLUS_PAGE_INDEX, TRIM_NUMBER } from '../constants';
+import colors from '../../styles/colors';
+import { PLUS_PAGE_INDEX, TRIM_NUMBER } from '../../constants';
 
 const PageNation = ({ numberOfItems, onChagePage }) => {
   const pageNum = Math.ceil(numberOfItems / TRIM_NUMBER);

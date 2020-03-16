@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Wave } from 'better-react-spinkit';
-import { LOADING_SIZE } from '../constants';
+import { LOADING_SIZE } from '../../constants';
 
 const Loading = () => {
   return (

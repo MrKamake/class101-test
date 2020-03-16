@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import Button from './Button';
+import Button from '../common/Button';
 import { TiHeartFullOutline, TiHeartOutline } from 'react-icons/ti';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/blur.css';
-import colors from '../styles/colors';
+import colors from '../../styles/colors';
 
 const ProductItem = ({ product, onClick, cartList }) => {
   const { id, title, coverImage, price } = product;
