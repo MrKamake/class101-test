@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Coupon from './Coupon';
+import colors from '../../styles/colors';
 
 const CartItemViewer = ({
   item,
@@ -72,6 +73,59 @@ const CartItemViewerWrapper = styled.div`
 const SelectWrapper = styled.div`
   display: flex;
   justify-content: space-between;
+  input[type='checkbox'] {
+    position: relative;
+    margin-right: 10px;
+    line-height: 16px;
+    font-size: 18px;
+    cursor: pointer;
+    &:before {
+      position: absolute;
+      height: 16px;
+      width: 16px;
+      border: 1px solid ${colors.gray};
+      border-radius: 5px;
+      background: ${colors.white};
+      content: '';
+    }
+    &:checked {
+      &:before {
+        content: '✔';
+      }
+    }
+    &:hover {
+      &:before {
+        border: 1px solid ${colors.skyblue};
+      }
+    }
+  }
+  input[type='number'] {
+    position: relative;
+    font-size: 11px;
+    cursor: pointer;
+    border: 1px solid ${colors.gray};
+    border-radius: 5px;
+    background: ${colors.white};
+    width: 90px;
+    &:hover {
+      &:before {
+        border: 1px solid ${colors.skyblue};
+      }
+    }
+  }
+  select {
+    position: relative;
+    font-size: 11px;
+    cursor: pointer;
+    border: 1px solid ${colors.gray};
+    border-radius: 5px;
+    background: ${colors.white};
+    &:hover {
+      &:before {
+        border: 1px solid ${colors.skyblue};
+      }
+    }
+  }
 `;
 
 export default CartItemViewer;

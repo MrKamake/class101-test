@@ -8,5 +8,6 @@ export default {
   classBlack: '1a1c1d',
   orange: '#ff912a',
   classRedyellow: '#f33240',
-  pink: '#fc3c46'
+  pink: '#fc3c46',
+  skyblue: '#40a5c6'
 };
