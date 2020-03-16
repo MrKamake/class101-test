@@ -19,7 +19,7 @@ describe('Products Pgae', () => {
       React.useState = cartList;
     });
 
-    it('products button', () => {
+    it('should contain element', () => {
       const element = new TestRenderer.create(
         (
           <CartContext.Provider value={{ cartList, setCartList }}>
@@ -71,20 +71,20 @@ describe('Products Pgae', () => {
       jest.clearAllMocks();
     });
 
-    describe('should contain navigation buttons', () => {
+    describe('should contain page buttons', () => {
       it('unclickable page button', () => {
-        const pageNumveButton = wrapper.find('.active');
-        expect(pageNumveButton.length).toBe(1);
+        const pageNumverButton = wrapper.find('.active');
+        expect(pageNumverButton.length).toBe(1);
         let clickEvent = () => {
-          pageNumveButton.simulate('click');
+          pageNumverButton.simulate('click');
         };
         expect(clickEvent).not.toThrow();
         expect(onChagePage.mock.calls.length).toEqual(0);
       });
 
       it('clickable page buttons', () => {
-        const pageNumveButtons = wrapper.find('li');
-        expect(pageNumveButtons.length).toBe(3);
+        const pageNumverButtons = wrapper.find('li');
+        expect(pageNumverButtons.length).toBe(3);
       });
     });
   });
