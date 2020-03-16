@@ -10,7 +10,6 @@
     "better-react-spinkit": "^2.0.4",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.2",
-    "enzyme-to-json": "^3.4.4",
     "postcss-normalize": "^8.0.1",
     "prop-types": "^15.7.2",
     "react": "^16.13.0",
@@ -20,6 +19,7 @@
     "react-lazy-load-image-component": "^1.4.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.4.0",
+    "react-test-renderer": "^16.13.0",
     "styled-components": "^5.0.1"
   },
   "scripts": {
@@ -37,15 +37,11 @@
       "not dead",
       "not op_mini all"
     ],
-    "jest": {
-      "snapshotSerializers": [
-        "enzyme-to-json/serializer"
-      ]
-    },
     "development": [
       "last 1 chrome version",
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  }
+  },
+  "devDependencies": {}
 }

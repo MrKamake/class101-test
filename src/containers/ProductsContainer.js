@@ -4,7 +4,7 @@ import { getDataApi } from '../api';
 import Loading from '../components/common/Loading';
 import ProductItem from '../components/common/ProductItem';
 import PageNation from '../components/product/PageNation';
-import { NUMBER_OF_ITEMS } from '../constants';
+import { TRIM_NUMBER } from '../constants';
 
 const ProductsContainer = () => {
   const [productItems, setProductItems] = useState([]);
@@ -15,14 +15,14 @@ const ProductsContainer = () => {
     getDataApi('productItems').then(res => {
       res.sort((a, b) => b.score - a.score);
       setProductItems(res);
-      setPageItems(res.slice(0, NUMBER_OF_ITEMS));
+      setPageItems(res.slice(0, TRIM_NUMBER));
     });
   }, []);
 
   const handleChangePage = page => {
     const startSliceNumber = 5 * (page - 1);
     setPageItems(
-      productItems.slice(startSliceNumber, startSliceNumber + NUMBER_OF_ITEMS)
+      productItems.slice(startSliceNumber, startSliceNumber + TRIM_NUMBER)
     );
   };
 

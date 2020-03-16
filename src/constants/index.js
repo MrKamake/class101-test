@@ -1,1 +1,1 @@
-export const NUMBER_OF_ITEMS = 5;
+export const TRIM_NUMBER = 5;

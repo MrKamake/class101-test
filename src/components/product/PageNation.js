@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import colors from '../../styles/colors';
-import { NUMBER_OF_ITEMS } from '../../constants';
+import { TRIM_NUMBER } from '../../constants';
 
 const PageNation = ({ numberOfItems, onChagePage }) => {
-  const pageNum = Math.ceil(numberOfItems / NUMBER_OF_ITEMS);
+  const pageNum = Math.ceil(numberOfItems / TRIM_NUMBER);
   const [currentPage, setCurrentPage] = useState(1);
 
   const setScrollTop = () => {
