@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
+import Coupon from './Coupon';
 
 const CartItemViewer = ({
   item,
@@ -15,17 +16,6 @@ const CartItemViewer = ({
     selected,
     quantity
   } = item;
-
-  const renderCouopns = () => (
-    <>
-      <option value="none, 0">쿠폰 선택</option>
-      {coupons.map(({ title, type, discountAmount, discountRate }) => (
-        <option value={[type, discountRate || discountAmount]} key={title}>
-          {title}
-        </option>
-      ))}
-    </>
-  );
 
   return (
     <CartItemViewerWrapper>
@@ -45,7 +35,7 @@ const CartItemViewer = ({
           {availableCoupon === false ? (
             <option>쿠폰을 사용할 수 없는 제품이에요.</option>
           ) : (
-            renderCouopns()
+            <Coupon coupons={coupons} />
           )}
         </select>
       </SelectWrapper>
