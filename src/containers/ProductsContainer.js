@@ -4,13 +4,7 @@ import { getDataApi } from '../api';
 import Loading from '../components/common/Loading';
 import ProductItem from '../components/common/ProductItem';
 import PageNation from '../components/product/PageNation';
-import {
-  TRIM_NUMBER,
-  NUMBER_OF_ITEMS,
-  UP_TO_THREE,
-  INITIAL_QUANTITY,
-  INITIAL_NUMBER
-} from '../constants';
+import { NUMBER_OF_ITEMS } from '../constants';
 
 const ProductsContainer = () => {
   const [productItems, setProductItems] = useState([]);
@@ -21,7 +15,7 @@ const ProductsContainer = () => {
     getDataApi('productItems').then(res => {
       res.sort((a, b) => b.score - a.score);
       setProductItems(res);
-      setPageItems(res.slice(0, TRIM_NUMBER));
+      setPageItems(res.slice(0, NUMBER_OF_ITEMS));
     });
   }, []);
 
@@ -34,20 +28,20 @@ const ProductsContainer = () => {
 
   const toggleItem = product => {
     const callback = item => item.product.id !== product.id;
-    const isCartList = cartList.every(callback);
+    const isInCartList = cartList.every(callback);
 
-    if (!isCartList) {
+    if (!isInCartList) {
       setCartList(cartList.filter(callback));
-    } else if (cartList.length < UP_TO_THREE) {
+    } else if (cartList.length < 3) {
       setCartList([
         ...cartList,
         {
           product,
           selected: true,
-          quantity: INITIAL_QUANTITY,
+          quantity: 1,
           coupon: {
             type: '',
-            discount: INITIAL_NUMBER
+            discount: 0
           }
         }
       ]);
