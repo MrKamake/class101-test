@@ -6,7 +6,7 @@ import CartContainer from '../containers/CartContainer';
 import colors from '../styles/colors';
 import TotalPrice from '../components/cart/TotalPrice'
 
-const Cart = () => {
+const CartPage = () => {
   const { cartList } = useContext(CartContext);
   const emptyCartList = cartList.length === 0;
 
@@ -51,4 +51,4 @@ const Title = styled.h2`
   font-weight: bold;
 `;
 
-export default Cart;
+export default CartPage;
