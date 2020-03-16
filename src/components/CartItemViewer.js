@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 const CartItemViewer = ({
@@ -15,28 +16,26 @@ const CartItemViewer = ({
     quantity
   } = item;
 
-  const renderCouopns = () => {
-    return (
-      <>
-        <option value="none, 0">쿠폰 선택</option>
-        {coupons.map(({ title, type, discountAmount, discountRate }) => (
-          <option value={[type, discountRate || discountAmount]} key={title}>
-            {title}
-          </option>
-        ))}
-      </>
-    );
-  };
+  const renderCouopns = () => (
+    <>
+      <option value="none, 0">쿠폰 선택</option>
+      {coupons.map(({ title, type, discountAmount, discountRate }) => (
+        <option value={[type, discountRate || discountAmount]} key={title}>
+          {title}
+        </option>
+      ))}
+    </>
+  );
 
   return (
-    <>
+    <CartItemViewerWrapper>
       {productCard}
-      <StyledCheckbox
-        type="checkbox"
-        checked={selected}
-        onChange={() => toggleItem(id)}
-      />
       <SelectWrapper>
+        <input
+          type="checkbox"
+          checked={selected}
+          onChange={() => toggleItem(id)}
+        />
         <input
           type="number"
           value={quantity}
@@ -50,16 +49,34 @@ const CartItemViewer = ({
           )}
         </select>
       </SelectWrapper>
-    </>
+    </CartItemViewerWrapper>
   );
 };
 
-const StyledCheckbox = styled.input`
-  position: absolute;
-  top: 8px;
-  left: 8px;
-  cursor: pointer;
-  transform: scale(1.3);
+CartItemViewer.defaultProps = {
+  coupons: []
+};
+
+CartItemViewer.propTypes = {
+  item: PropTypes.shape({
+    product: PropTypes.shape({
+      id: PropTypes.string,
+      availableCoupon: PropTypes.bool
+    }),
+    selected: PropTypes.bool
+  }),
+  coupons: PropTypes.array,
+  toggleItem: PropTypes.func,
+  onChangeCount: PropTypes.func,
+  onChangeCoupon: PropTypes.func,
+  productCard: PropTypes.object
+};
+
+const CartItemViewerWrapper = styled.div`
+  margin: 2% 3%;
+  div {
+    margin: 0;
+  }
 `;
 
 const SelectWrapper = styled.div`

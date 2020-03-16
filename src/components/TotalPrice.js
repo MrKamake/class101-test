@@ -73,12 +73,9 @@ const TotalPrice = () => {
 };
 
 const PriceWrapper = styled.div`
-  position: fixed;
-  bottom: 35%;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 1% 0 3%;
-  width: 62%;
+position: relative;
+  margin-top: 3%;
+  padding-top: 4%;
   border-top: solid;
   border-width: 1px;
   border-color: ${colors.darkGray};

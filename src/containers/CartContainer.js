@@ -1,14 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
+import PropTypes from 'prop-types';
 import { CartContext } from '../App';
 import { getDataApi } from '../api';
 import ProductItem from '../components/ProductItem';
-import TotalPrice from '../components/TotalPrice';
 import CartItemViewer from '../components/CartItemViewer';
 
 const CartContainer = ({ cartList }) => {
   const { setCartList } = useContext(CartContext);
   const [coupons, setCoupons] = useState([]);
-  const emptyCartList = cartList.length === 0;
 
   useEffect(() => {
     getDataApi('coupons').then(coupons => {
@@ -47,32 +46,34 @@ const CartContainer = ({ cartList }) => {
     setCartList(cartList.filter(item => item.product.id !== product.id));
   };
 
-  return (
-    <>
-      {cartList.map(item => {
-        return (
-          <>
-            <CartItemViewer
-              item={item}
-              coupons={coupons}
-              toggleItem={toggleSelected}
-              onChangeCount={handleChangeCount}
-              onChangeCoupon={handleChangeCoupon}
-              productCard={
-                <ProductItem
-                  key={item.product.id}
-                  product={item.product}
-                  onClick={removeCartlist}
-                  cartList={cartList}
-                />
-              }
-            />
-          </>
-        );
-      })}
-      {!emptyCartList && <TotalPrice />}
-    </>
-  );
+  if (cartList.length === 0) return null;
+
+  return cartList.map(item => (
+    <CartItemViewer
+      key={item.product.id}
+      item={item}
+      coupons={coupons}
+      toggleItem={toggleSelected}
+      onChangeCount={handleChangeCount}
+      onChangeCoupon={handleChangeCoupon}
+      productCard={
+        <ProductItem
+          key={item.product.id}
+          product={item.product}
+          onClick={removeCartlist}
+          cartList={cartList}
+        />
+      }
+    />
+  ));
+};
+
+CartContainer.defaultProps = {
+  cartList: []
+};
+
+CartContainer.propTypes = {
+  cartList: PropTypes.array
 };
 
 export default CartContainer;

@@ -31,13 +31,24 @@ const ProductItem = ({ product, onClick, cartList }) => {
   );
 };
 
+ProductItem.defaultProps = {
+  product: {
+    id: 'EmptyData',
+    title: 'Stranger',
+    price: 100000
+  },
+  cartList: []
+};
+
 ProductItem.propTypes = {
   product: PropTypes.shape({
     id: PropTypes.string,
     title: PropTypes.string,
     coverImage: PropTypes.string,
     price: PropTypes.number
-  })
+  }),
+  onClick: PropTypes.func,
+  cartList: PropTypes.array
 };
 
 const ProductItemWrapper = styled.div`

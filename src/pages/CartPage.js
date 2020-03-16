@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { CartContext } from '../App';
 import CartContainer from '../containers/CartContainer';
 import colors from '../styles/colors';
+import TotalPrice from '../components/TotalPrice'
 
 const Cart = () => {
   const { cartList } = useContext(CartContext);
@@ -16,6 +17,7 @@ const Cart = () => {
         {!emptyCartList || <Link to="/products">Class를 찜해주세요 :)</Link>}
         <CartContainer cartList={cartList} />
       </CartWrapper>
+      {!emptyCartList && <TotalPrice />}
     </StyledCart>
   );
 };
